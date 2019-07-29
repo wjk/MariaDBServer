@@ -108,3 +108,4 @@ cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DCOMPILATION_COMMENT="Sunburst MariaDB Server"
 
 $MAKE_PROGRAM
+DESTDIR=$MY_DIR/build/prefix $MAKE_PROGRAM install
