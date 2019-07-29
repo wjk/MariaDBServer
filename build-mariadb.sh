@@ -2,6 +2,17 @@
 
 set -e
 
+CLEAN=false
+while [ $# -gt 0 ]; do
+    if [ "$1" == "-clean" ]; then
+        CLEAN=true
+    else
+        echo "Unknown argument $1, ignoring"
+    fi
+
+    shift
+done
+
 MY_DIR=$(cd `dirname $0` && pwd)
 mkdir -p $MY_DIR/build && cd $MY_DIR/build
 
@@ -31,6 +42,7 @@ if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
 else
     echo "Downloading $SOURCE_TARBALL_FILENAME"
     curl -s -L -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.org/f/mariadb-10.4.6/source/mariadb-10.4.6.tar.gz
+    CLEAN=true
 fi
 
 SOURCE_SHA=$(shasum -a 256 $SOURCE_TARBALL_FILENAME)
@@ -42,14 +54,21 @@ if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     exit 1
 fi
 
-echo "Extracting $SOURCE_TARBALL_FILENAME"
-rm -rf mariadb-10.4.6
-tar xf $SOURCE_TARBALL_FILENAME
+if [ "$CLEAN" = "true" -o ! -d mariadb-10.4.6 ]; then
+    echo "Extracting $SOURCE_TARBALL_FILENAME"
+    rm -rf mariadb-10.4.6
+    tar xf $SOURCE_TARBALL_FILENAME
+    PATCHES_NEEDED=true
+fi
+
 cd mariadb-10.4.6
 
 echo '*** Step 2: Applying patches'
-patch -p1 -N -r /dev/null < $MY_DIR/patches/0001-install_db_path.patch
-patch -p1 -N -r /dev/null < $MY_DIR/patches/0002-wsrep_sst_common.patch
+
+if [ -n "$PATCHES_NEEDED" ]; then
+    patch -p1 -N -r /dev/null < $MY_DIR/patches/0001-install_db_path.patch
+    patch -p1 -N -r /dev/null < $MY_DIR/patches/0002-wsrep_sst_common.patch
+fi
 
 echo '*** Step 3: Compiling MariaDB'
 # The values for the -DINSTALL_* variables are relative to the prefix.
