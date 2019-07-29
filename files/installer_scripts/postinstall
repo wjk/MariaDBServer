@@ -6,7 +6,7 @@ if [ ! -f "$3/Library/MariaDB/ServiceData/mysql/user.frm" ]; then
 
     "$3/Library/MariaDB/Prefix/scripts/mysql_install_db" --verbose --user=daemon \
         --basedir="$3/Library/MariaDB/Prefix" --datadir="$3/Library/MariaDB/ServiceData" \
-        --tmpdir"=$3/tmp"
+        --tmpdir="$3/tmp"
 fi
 
 mkdir -p $3/Library/Logs/MariaDB
