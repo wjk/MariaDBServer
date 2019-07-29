@@ -127,6 +127,10 @@ cat <<EOF > Library/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
 bind-address = 127.0.0.1
 EOF
 
+mkdir -p etc/paths.d etc/manpaths.d
+echo '/Library/MariaDB/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
+echo '/Library/MariaDB/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
+
 # remove unneeded Linux-only files
 rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrotate.d
 
