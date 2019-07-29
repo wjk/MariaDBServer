@@ -4,7 +4,7 @@ set -e
 
 CLEAN=false
 while [ $# -gt 0 ]; do
-    if [ "$1" == "-clean" ]; then
+    if [ "$1" = "-clean" ]; then
         CLEAN=true
     else
         echo "Unknown argument $1, ignoring"
