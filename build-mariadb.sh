@@ -141,6 +141,24 @@ mkdir -p Library/MariaDB/Documentation
 cp Library/MariaDB/Prefix/COPYING Library/MariaDB/Documentation/LICENSE.txt
 cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/MariaDB/Documentation/$SOURCE_TARBALL_FILENAME
 
+# If you want to sign with a different certificate, set the CODESIGN_IDENTITY
+# environment variable before running this script.
+: ${CODESIGN_IDENTITY:=Developer ID Application}
+find . -type f -and -perm 755 | xargs file | fgrep 'Mach-O 64-bit' | while read line; do
+    filename=$(echo $line | sed -Ee 's,:.*$,,g')
+    filetype=$(echo $line | sed -Ee 's,.*Mach-O 64-bit ([^[:space:]]+) x86_64.*,\1,g')
+    echo "Signing ${filename}"
+
+    if [ "$filetype" = "executable" ]; then
+        codesign -s "${CODESIGN_IDENTITY}" -f --prefix me.sunsol.mariadb \
+            --entitlements $MY_DIR/files/entitlements.plist -o runtime \
+            --timestamp $filename
+    else
+        codesign -s "${CODESIGN_IDENTITY}" -f --prefix me.sunsol.mariadb \
+            --timestamp $filename
+    fi
+done
+
 echo '*** Step 5: Creating component installer'
 
 cd $MY_DIR
