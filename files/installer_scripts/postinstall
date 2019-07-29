@@ -6,7 +6,11 @@ if [ ! -f "$3/Library/MariaDB/Configuration/mysql/user.frm" ]; then
     "$3/Library/MariaDB/Prefix/bin/mysql_install_db" --verbose --user=daemon \
         --basedir="$3/Library/MariaDB/Prefix" --datadir="$3/Library/MariaDB/ServiceData" \
         --tmpdir"=$3/tmp"
-
-    chown –R daemon:daemon $3/Library/MariaDB/ServiceData
-    chmod 700 $3/Library/MariaDB/ServiceData
 fi
+
+chown –R daemon:daemon $3/Library/MariaDB/ServiceData
+chmod 700 $3/Library/MariaDB/ServiceData
+
+mkdir -p $3/Library/Logs/MariaDB
+touch $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
+chmod daemon:daemon $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
