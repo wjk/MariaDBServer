@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 set -e
-if [ ! -f "$3/Library/MariaDB/Configuration/mysql/user.frm" ]; then
+if [ ! -f "$3/Library/MariaDB/ServiceData/mysql/user.frm" ]; then
     unset TMPDIR
 
     "$3/Library/MariaDB/Prefix/scripts/mysql_install_db" --verbose --user=daemon \
