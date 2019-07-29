@@ -44,6 +44,7 @@ if [ ! -f $OPENSSL_PREFIX/lib/libcrypto.a -o ! -f $OPENSSL_PREFIX/lib/libssl.a -
 fi
 
 echo '*** Step 1: Downloading MariaDB'
+
 SOURCE_TARBALL_FILENAME=mariadb-10.4.6.tar.gz
 
 if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
@@ -80,6 +81,7 @@ if [ -n "$PATCHES_NEEDED" ]; then
 fi
 
 echo '*** Step 3: Compiling MariaDB'
+
 # The values for the -DINSTALL_* variables are relative to the prefix.
 cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
