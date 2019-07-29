@@ -9,9 +9,4 @@ if [ ! -f "$3/Library/MariaDB/ServiceData/mysql/user.frm" ]; then
         --tmpdir"=$3/tmp"
 fi
 
-chown –R daemon:daemon $3/Library/MariaDB/ServiceData
-chmod 700 $3/Library/MariaDB/ServiceData
-
 mkdir -p $3/Library/Logs/MariaDB
-touch $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
-chown daemon:daemon $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
