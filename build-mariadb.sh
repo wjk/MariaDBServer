@@ -133,6 +133,10 @@ rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrota
 mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
 
+mkdir -p Library/MariaDB/Documentation
+cp Library/MariaDB/Prefix/COPYING Library/MariaDB/Documentation/LICENSE.txt
+cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/MariaDB/Documentation/$SOURCE_TARBALL_FILENAME
+
 echo '*** Step 5: Creating component installer'
 
 cd $MY_DIR
