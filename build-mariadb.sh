@@ -29,6 +29,7 @@ SOURCE_TARBALL_FILENAME=mariadb-10.4.6.tar.gz
 if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
     echo "$SOURCE_TARBALL_FILENAME already downloaded"
 else
+    echo "Downloading $SOURCE_TARBALL_FILENAME"
     curl -s -L -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.org/f/mariadb-10.4.6/source/mariadb-10.4.6.tar.gz
 fi
 
