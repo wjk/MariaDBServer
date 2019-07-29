@@ -132,3 +132,26 @@ rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrota
 
 mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
+
+echo '*** Step 5: Creating component installer'
+
+cd $MY_DIR
+
+pkgbuild \
+    --ownership recommended --identifier me.sunsol.mariadb.component \
+    --version 1.0 --root build/prefix --install-location / \
+    --scripts files/installer_scripts \
+    $MY_DIR/build/component.pkg
+
+echo '*** Step 6: Create product installer'
+
+productbuild \
+    --distribution files/distribution.xml \
+    --identifier me.sunsol.mariadb \
+    --version 1.0 \
+    --sign 'Developer ID Installer' --timestamp \
+    --package-path build \
+    --resources files \
+    $MY_DIR/build/MariaDB.pkg
+
+echo "Done! Your installer is located at: $MY_DIR/build/MariaDB.pkg"
