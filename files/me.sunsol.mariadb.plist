@@ -13,7 +13,7 @@
         <string>--datadir=/Library/MariaDB/ServiceData</string>
     </array>
 
-    <key>StandardOutputPath</key>
+    <key>StandardOutPath</key>
     <string>/Library/Logs/MariaDB/stdout.log</string>
     <key>StandardErrorPath</key>
     <string>/Library/Logs/MariaDB/stderr.log</string>
