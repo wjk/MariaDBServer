@@ -129,3 +129,6 @@ EOF
 
 # remove unneeded Linux-only files
 rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrotate.d
+
+mkdir -p Library/LaunchDaemons
+cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist

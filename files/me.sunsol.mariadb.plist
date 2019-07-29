@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>me.sunsol.mariadb</string>
+    <key>UserName</key>
+    <string>daemon</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Library/MariaDB/Prefix/bin/mysqld</string>
+        <string>--datadir=/Library/MariaDB/ServiceData</string>
+    </array>
+
+    <key>StandardOutputPath</key>
+    <string>/Library/Logs/MariaDB/stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Library/Logs/MariaDB/stderr.log</string>
+    <key>WorkingDirectory</key>
+    <string>/Library/MariaDB</string>
+
+    <key>KeepAlive</key>
+    <true/>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
