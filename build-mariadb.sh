@@ -111,3 +111,21 @@ cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
 
 $MAKE_PROGRAM
 DESTDIR=$MY_DIR/build/prefix $MAKE_PROGRAM install
+
+echo '*** Step 4: Post-processing installation'
+
+cd $MY_DIR/build/prefix
+mkdir -p Library/MariaDB/Configuration/my.cnf.d
+sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/MariaDB/Configuration/my.cnf.d,g' \
+    Library/MariaDB/Configuration/my.cnf
+
+cat <<EOF > Library/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
+# This script restricts the MariaDB server to accept connections
+# from localhost only, for security purposes. You can disable this
+# behavior by deleting this file.
+[mysqld]
+bind-address = 127.0.0.1
+EOF
+
+# remove unneeded Linux-only files
+rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrotate.d
