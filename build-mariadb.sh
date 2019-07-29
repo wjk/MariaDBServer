@@ -99,7 +99,9 @@ cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DWITH_UNIT_TESTS=OFF \
     -DDEFAULT_CHARSET=utf8mb4 \
     -DDEFAULT_CHARSET=utf8mb4_general_ci \
-    -DINSTALL_SYSCONFDIR=../Configuration \
+    -DINSTALL_SYSCONFDIR=/Library/MariaDB/Configuration \
+    -DINSTALL_MYSQLTESTDIR=NO \
+    -DINSTALL_SQLBENCHDIR=NO \
     -DPLUGIN_TOKUDB=NO \
     -DOPENSSL_SSL_LIBRARY=${OPENSSL_PREFIX}/lib/libssl.a \
     -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_PREFIX}/lib/libcrypto.a \
