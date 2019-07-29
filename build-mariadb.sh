@@ -24,6 +24,15 @@ which -s cmake || {
     exit 1
 }
 
+MAKE_PROGRAM=ninja
+CMAKE_GENERATOR=Ninja
+which -s ninja || {
+    echo "Ninja not found, using Make instead (slower)" 1>&2
+    echo "You can install it via Homebrew: brew install ninja" 1>&2
+    MAKE_PROGRAM=make
+    CMAKE_GENERATOR="Unix Makefiles"
+}
+
 # OpenSSL is expected to be installed via Homebrew, as that's what I use.
 # If you have it installed somewhere else, set the OPENSSL_PREFIX environment
 # variable before running this script.
@@ -72,7 +81,7 @@ fi
 
 echo '*** Step 3: Compiling MariaDB'
 # The values for the -DINSTALL_* variables are relative to the prefix.
-cmake . -Wno-dev \
+cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
     -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG \
     -DCMAKE_INSTALL_PREFIX=/Library/MariaDB/Prefix \
@@ -96,4 +105,4 @@ cmake . -Wno-dev \
     -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_PREFIX}/lib/libcrypto.a \
     -DCOMPILATION_COMMENT="Sunburst MariaDB Server"
 
-make
+$MAKE_PROGRAM
