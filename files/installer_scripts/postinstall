@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+set -e
 if [ ! -f "$3/Library/MariaDB/Configuration/mysql/user.frm" ]; then
     unset TMPDIR
 
