@@ -1,0 +1,62 @@
+commit 3a778c36b8908f25b1a00e73307f447ab56d482d
+Author: William Kent <wjk011@gmail.com>
+Date:   Sun Jul 28 20:57:53 2019 -0400
+
+    Install wsrep_sst_common to the share directory
+    
+    This file is not intended to be ran directly by users,
+    so do not put into the bin directory, as that directory
+    will be added to the system path.
+
+diff --git a/scripts/CMakeLists.txt b/scripts/CMakeLists.txt
+index 7be46ac1..56dbd6aa 100644
+--- a/scripts/CMakeLists.txt
++++ b/scripts/CMakeLists.txt
+@@ -358,7 +358,7 @@ ELSE()
+     ENDIF()
+     INSTALL(FILES
+       ${CMAKE_CURRENT_BINARY_DIR}/${file}
+-      DESTINATION ${INSTALL_BINDIR}
++      DESTINATION ${INSTALL_MYSQLSHAREDIR}
+       COMPONENT ${${file}_COMPONENT}
+      )
+   ENDFOREACH()
+diff --git a/scripts/wsrep_sst_mariabackup.sh b/scripts/wsrep_sst_mariabackup.sh
+index 6c3206a0..0ecff402 100644
+--- a/scripts/wsrep_sst_mariabackup.sh
++++ b/scripts/wsrep_sst_mariabackup.sh
+@@ -20,7 +20,7 @@
+ # http://www.percona.com/doc/percona-xtradb-cluster/manual/xtrabackup_sst.html
+ # Make sure to read that before proceeding!
+ 
+-. $(dirname $0)/wsrep_sst_common
++. /Library/MariaDB/Prefix/share/mysql/wsrep_sst_common
+ 
+ OS=$(uname)
+ ealgo=""
+diff --git a/scripts/wsrep_sst_mysqldump.sh b/scripts/wsrep_sst_mysqldump.sh
+index 4a5e5bc7..83f6efe3 100644
+--- a/scripts/wsrep_sst_mysqldump.sh
++++ b/scripts/wsrep_sst_mysqldump.sh
+@@ -17,7 +17,7 @@
+ 
+ # This is a reference script for mysqldump-based state snapshot tansfer
+ 
+-. $(dirname $0)/wsrep_sst_common
++. /Library/MariaDB/Prefix/share/mysql/wsrep_sst_common
+ PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin
+ 
+ EINVAL=22
+diff --git a/scripts/wsrep_sst_rsync.sh b/scripts/wsrep_sst_rsync.sh
+index 0fb7509d..b6266de1 100644
+--- a/scripts/wsrep_sst_rsync.sh
++++ b/scripts/wsrep_sst_rsync.sh
+@@ -28,7 +28,7 @@ OS=$(uname)
+ # Setting the path for lsof on CentOS
+ export PATH="/usr/sbin:/sbin:$PATH"
+ 
+-. $(dirname $0)/wsrep_sst_common
++. /Library/MariaDB/Prefix/share/mysql/wsrep_sst_common
+ 
+ wsrep_check_programs rsync
+ 

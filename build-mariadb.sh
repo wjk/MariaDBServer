@@ -46,3 +46,35 @@ echo "Extracting $SOURCE_TARBALL_FILENAME"
 rm -rf mariadb-10.4.6
 tar xf $SOURCE_TARBALL_FILENAME
 cd mariadb-10.4.6
+
+echo '*** Step 2: Applying patches'
+patch -p1 -N -r /dev/null < $MY_DIR/patches/0001-install_db_path.patch
+patch -p1 -N -r /dev/null < $MY_DIR/patches/0002-wsrep_sst_common.patch
+
+echo '*** Step 3: Compiling MariaDB'
+# The values for the -DINSTALL_* variables are relative to the prefix.
+cmake . -Wno-dev \
+    -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
+    -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG \
+    -DCMAKE_INSTALL_PREFIX=/Library/MariaDB/Prefix \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_FIND_FRAMEWORK=LAST \
+    -DMYSQL_DATADIR=/Library/MariaDB/ServiceData \
+    -DINSTALL_INCLUDEDIR=include/mysql \
+    -DINSTALL_MANDIR=share/man \
+    -DINSTALL_DOCDIR=share/doc \
+    -DINSTALL_INFODIR=share/info \
+    -DINSTALL_MYSQLSHAREDIR=share/mysql \
+    -DWITH_PCRE=bundled \
+    -DWITH_READLINE=yes \
+    -DWITH_SSL=$OPENSSL_PREFIX \
+    -DWITH_UNIT_TESTS=OFF \
+    -DDEFAULT_CHARSET=utf8mb4 \
+    -DDEFAULT_CHARSET=utf8mb4_general_ci \
+    -DINSTALL_SYSCONFDIR=../Configuration \
+    -DPLUGIN_TOKUDB=NO \
+    -DOPENSSL_SSL_LIBRARY=${OPENSSL_PREFIX}/lib/libssl.a \
+    -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_PREFIX}/lib/libcrypto.a \
+    -DCOMPILATION_COMMENT="Sunburst MariaDB Server"
+
+make

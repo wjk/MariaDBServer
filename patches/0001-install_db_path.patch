@@ -1,0 +1,16 @@
+diff --git a/scripts/mysql_install_db.sh b/scripts/mysql_install_db.sh
+index 1ea1e39b..3cf88b5d 100644
+--- a/scripts/mysql_install_db.sh
++++ b/scripts/mysql_install_db.sh
+@@ -19,9 +19,9 @@
+ #
+ # All unrecognized arguments to this script are passed to mysqld.
+
+-basedir=""
++basedir="/Library/MySQL/Prefix"
+ builddir=""
+-ldata="@localstatedir@"
++ldata="/Library/MySQL/ServiceData"
+ langdir=""
+ srcdir=""
+ log_error=""
