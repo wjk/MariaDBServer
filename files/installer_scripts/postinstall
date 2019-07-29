@@ -4,7 +4,7 @@ set -e
 if [ ! -f "$3/Library/MariaDB/Configuration/mysql/user.frm" ]; then
     unset TMPDIR
 
-    "$3/Library/MariaDB/Prefix/bin/mysql_install_db" --verbose --user=daemon \
+    "$3/Library/MariaDB/Prefix/scripts/mysql_install_db" --verbose --user=daemon \
         --basedir="$3/Library/MariaDB/Prefix" --datadir="$3/Library/MariaDB/ServiceData" \
         --tmpdir"=$3/tmp"
 fi
