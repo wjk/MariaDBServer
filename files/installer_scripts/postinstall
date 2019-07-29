@@ -14,4 +14,4 @@ chmod 700 $3/Library/MariaDB/ServiceData
 
 mkdir -p $3/Library/Logs/MariaDB
 touch $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
-chmod daemon:daemon $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
+chown daemon:daemon $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/stderr.log
