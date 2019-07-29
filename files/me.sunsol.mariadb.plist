@@ -20,9 +20,12 @@
     <key>WorkingDirectory</key>
     <string>/Library/MariaDB</string>
 
-    <key>KeepAlive</key>
-    <true/>
     <key>RunAtLoad</key>
     <true/>
+    <key>KeepAlive</key>
+    <dict>
+        <key>Crashed</key>
+        <false/>
+    </dict>
 </dict>
 </plist>
