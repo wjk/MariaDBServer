@@ -133,6 +133,7 @@ echo '/Library/MariaDB/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
 
 # remove unneeded Linux-only files
 rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrotate.d
+rm Library/MariaDB/Prefix/bin/rcmysql
 
 mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
