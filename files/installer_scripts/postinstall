@@ -16,4 +16,5 @@ chown daemon:wheel $3/Library/Logs/MariaDB/stdout.log $3/Library/Logs/MariaDB/st
 if [ "$3" = "/" ]; then
     launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist || true
     launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.plist
+    launchctl kickstart system/me.sunsol.mariadb || true
 fi
