@@ -1,5 +1,10 @@
 #!/bin/sh -u
 
+if [ $# -ne 5 ]; then
+	echo usage: $0 '<TeamID> <username> <password> <bundle_id> path/to/file' 1>&2
+	exit 1
+fi
+
 ASC_PROVIDER="$1"
 ASC_USERNAME="$2"
 ASC_PASSWORD="$3"
