@@ -3,7 +3,7 @@
 set -e
 
 if [ $UID -ne 0 ]; then
-    echo 'mariadb_ctl must be run as root.' 1>&2
+    echo 'mariadbctl must be run as root.' 1>&2
     exit 1
 fi
 
@@ -17,7 +17,7 @@ elif [ "$1" = "restart" ]; then
 elif [ "$1" = "status" ]; then
     launchctl print system/me.sunsol.mariadb
 else
-    echo 'usage: mariadb_ctl <arg>' 1>&2
+    echo 'usage: mariadbctl <arg>' 1>&2
     echo '<arg> can be one of start/stop/restart/status' 1>&2
     exit 1
 fi
