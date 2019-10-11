@@ -13,7 +13,7 @@ elif [ "$1" = "stop" ]; then
     launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist
 elif [ "$1" = "restart" ]; then
     launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist || :
-    launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.
+    launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.plist
 elif [ "$1" = "status" ]; then
     launchctl print system/me.sunsol.mariadb
 else
