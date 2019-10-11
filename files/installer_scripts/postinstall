@@ -9,11 +9,6 @@ if [ ! -f "$3/Library/MariaDB/ServiceData/mysql/user.frm" ]; then
         --tmpdir="$3/tmp"
 fi
 
-touch $3/Library/Logs/MariaDB_stdout.log $3/Library/Logs/MariaDB_stderr.log
-chown daemon:wheel $3/Library/Logs/MariaDB_stdout.log $3/Library/Logs/MariaDB_stderr.log
-
 if [ "$3" = "/" ]; then
-    launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist || true
-    launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.plist
-    launchctl kickstart system/me.sunsol.mariadb || true
+    /Library/MariaDB/Prefix/bin/mariadbctl start || true
 fi
