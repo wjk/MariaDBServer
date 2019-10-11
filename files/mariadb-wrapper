@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+if [ $UID -ne 0 ]; then
+    echo mariadb-wrapper must be run as root. 1>&2
+    exit 1
+fi
+
+touch /Library/Logs/MariaDB.log
+chown daemon:wheel /Library/Logs/MariaDB.log
+
+UID=1 # uid 1 is the daemon account
+exec /Library/MariaDB/Prefix/bin/mysqld \
+    --datadir=/Library/MariaDB/ServiceData \
+> /Library/Logs/MariaDB.log 1>&2
