@@ -11,4 +11,4 @@ chown daemon:wheel /Library/Logs/MariaDB.log
 UID=1 # uid 1 is the daemon account
 exec /Library/MariaDB/Prefix/bin/mysqld \
     --datadir=/Library/MariaDB/ServiceData \
-> /Library/Logs/MariaDB.log 1>&2
+> /Library/Logs/MariaDB.log 2>&1
