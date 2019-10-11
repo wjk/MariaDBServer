@@ -18,7 +18,7 @@ mkdir -p $MY_DIR/build && cd $MY_DIR/build
 
 echo '*** Step 0: Checking prerequisites'
 
-which -s cmake || {
+command which -s cmake || {
     echo "Error: CMake not found in path" 1>&2
     echo "You can install it via Homebrew: brew install cmake" 1>&2
     exit 1
@@ -26,7 +26,7 @@ which -s cmake || {
 
 MAKE_PROGRAM=ninja
 CMAKE_GENERATOR=Ninja
-which -s ninja || {
+command which -s ninja || {
     echo "Ninja not found, using Make instead (slower)" 1>&2
     echo "You can install it via Homebrew: brew install ninja" 1>&2
     MAKE_PROGRAM=make
