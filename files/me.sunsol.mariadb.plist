@@ -5,20 +5,12 @@
     <key>Label</key>
     <string>me.sunsol.mariadb</string>
     <key>UserName</key>
-    <string>daemon</string>
+    <string>root</string>
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Library/MariaDB/Prefix/bin/mysqld</string>
-        <string>--datadir=/Library/MariaDB/ServiceData</string>
+        <string>/Library/MariaDB/Prefix/bin/mysqld-wrapper</string>
     </array>
-
-    <key>StandardOutPath</key>
-    <string>/Library/Logs/MariaDB_stdout.log</string>
-    <key>StandardErrorPath</key>
-    <string>/Library/Logs/MariaDB_stderr.log</string>
-    <key>WorkingDirectory</key>
-    <string>/Library/MariaDB</string>
 
     <key>RunAtLoad</key>
     <true/>
