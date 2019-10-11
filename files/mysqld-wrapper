@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 if [ $UID -ne 0 ]; then
-    echo mariadb-wrapper must be run as root. 1>&2
+    echo mysqld-wrapper must be run as root. 1>&2
     exit 1
 fi
 
