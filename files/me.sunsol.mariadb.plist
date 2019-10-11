@@ -14,9 +14,9 @@
     </array>
 
     <key>StandardOutPath</key>
-    <string>/Library/Logs/MariaDB/stdout.log</string>
+    <string>/Library/Logs/MariaDB_stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/Library/Logs/MariaDB/stderr.log</string>
+    <string>/Library/Logs/MariaDB_stderr.log</string>
     <key>WorkingDirectory</key>
     <string>/Library/MariaDB</string>
 
