@@ -115,7 +115,7 @@ echo '*** Step 3: Post-processing installation'
 cd $MY_DIR/build/prefix
 mkdir -p Library/MariaDB/Configuration/my.cnf.d
 sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/ServiceData/MariaDB/Configuration/my.cnf.d,g' \
-    Library/MariaDB/Configuration/my.cnf
+    Library/ServiceData/MariaDB/Configuration/my.cnf
 
 cat <<EOF > Library/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
 # This script restricts the MariaDB server to accept connections
