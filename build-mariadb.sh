@@ -80,7 +80,7 @@ fi
 
 cd $MY_DIR/build
 
-echo '*** Step 3: Compiling MariaDB'
+echo '*** Step 2: Compiling MariaDB'
 
 # The values for the -DINSTALL_* variables are relative to the prefix.
 cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
@@ -112,7 +112,7 @@ cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
 $MAKE_PROGRAM
 DESTDIR=$MY_DIR/build/prefix $MAKE_PROGRAM install
 
-echo '*** Step 4: Post-processing installation'
+echo '*** Step 3: Post-processing installation'
 
 cd $MY_DIR/build/prefix
 mkdir -p Library/MariaDB/Configuration/my.cnf.d
@@ -162,7 +162,7 @@ find . -type f -and -perm 755 | xargs file | fgrep 'Mach-O 64-bit' | while read 
     fi
 done
 
-echo '*** Step 5: Creating component installer'
+echo '*** Step 4: Creating component installer'
 
 cd $MY_DIR
 
@@ -172,7 +172,7 @@ pkgbuild \
     --scripts files/installer_scripts \
     $MY_DIR/build/component.pkg
 
-echo '*** Step 6: Create product installer'
+echo '*** Step 5: Create product installer'
 
 productbuild \
     --distribution files/distribution.xml \
@@ -183,4 +183,4 @@ productbuild \
     --resources files \
     $MY_DIR/build/MariaDB.pkg
 
-echo "Done! Your installer is located at: $MY_DIR/build/MariaDB.pkg"
+echo "*** Done! Your installer is located at: $MY_DIR/build/MariaDB.pkg"
