@@ -172,7 +172,7 @@ pkgbuild \
     --scripts files/installer_scripts \
     $MY_DIR/build/component.pkg
 
-echo '*** Step 5: Create product installer'
+echo '*** Step 5: Creating product installer'
 
 productbuild \
     --distribution files/distribution.xml \
