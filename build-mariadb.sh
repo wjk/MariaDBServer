@@ -130,6 +130,7 @@ echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/bin' > etc/paths.d/me.suns
 echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
 
 # remove unneeded Linux-only files
+rm -r Library/ServiceData/MariaDB/Configuration/{init.d,logrotate.d}
 rm -r Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/support-files
 
 mkdir -p Library/LaunchDaemons
