@@ -78,8 +78,6 @@ if [ -n "$PATCHES_NEEDED" ]; then
     patch -p1 -N -r /dev/null < $MY_DIR/patches/0002-wsrep_sst_common.patch
 fi
 
-cd $MY_DIR/build
-
 echo '*** Step 2: Compiling MariaDB'
 
 # The values for the -DINSTALL_* variables are relative to the prefix.
