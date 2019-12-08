@@ -7,10 +7,10 @@ index 1ea1e39b..3cf88b5d 100644
  # All unrecognized arguments to this script are passed to mysqld.
 
 -basedir=""
-+basedir="/Library/MySQL/Prefix"
++basedir="/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix"
  builddir=""
 -ldata="@localstatedir@"
-+ldata="/Library/MySQL/ServiceData"
++ldata="/Library/ServiceData/MariaDB/database"
  langdir=""
  srcdir=""
  log_error=""

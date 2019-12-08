@@ -84,10 +84,10 @@ echo '*** Step 2: Compiling MariaDB'
 cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
     -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG \
-    -DCMAKE_INSTALL_PREFIX=/Library/MariaDB/Prefix \
+    -DCMAKE_INSTALL_PREFIX=/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_FIND_FRAMEWORK=LAST \
-    -DMYSQL_DATADIR=/Library/MariaDB/ServiceData \
+    -DMYSQL_DATADIR=/Library/ServiceData/MariaDB/database \
     -DINSTALL_INCLUDEDIR=include/mysql \
     -DINSTALL_MANDIR=share/man \
     -DINSTALL_DOCDIR=share/doc \
@@ -99,7 +99,7 @@ cmake . -Wno-dev -G "${CMAKE_GENERATOR}" \
     -DWITH_UNIT_TESTS=OFF \
     -DDEFAULT_CHARSET=utf8mb4 \
     -DDEFAULT_COLLATION=utf8mb4_general_ci \
-    -DINSTALL_SYSCONFDIR=/Library/MariaDB/Configuration \
+    -DINSTALL_SYSCONFDIR=/Library/ServiceData/MariaDB/Configuration \
     -DINSTALL_MYSQLTESTDIR=NO \
     -DINSTALL_SQLBENCHDIR=NO \
     -DPLUGIN_TOKUDB=NO \
@@ -114,7 +114,7 @@ echo '*** Step 3: Post-processing installation'
 
 cd $MY_DIR/build/prefix
 mkdir -p Library/MariaDB/Configuration/my.cnf.d
-sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/MariaDB/Configuration/my.cnf.d,g' \
+sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/ServiceData/MariaDB/Configuration/my.cnf.d,g' \
     Library/MariaDB/Configuration/my.cnf
 
 cat <<EOF > Library/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
@@ -126,21 +126,21 @@ bind-address = 127.0.0.1
 EOF
 
 mkdir -p etc/paths.d etc/manpaths.d
-echo '/Library/MariaDB/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
-echo '/Library/MariaDB/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
+echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
+echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
 
 # remove unneeded Linux-only files
-rm -r Library/MariaDB/Configuration/init.d Library/MariaDB/Configuration/logrotate.d
-rm Library/MariaDB/Prefix/bin/rcmysql
+rm -r Library/ServiceData/MariaDB/Configuration/init.d Library/ServiceData/MariaDB/Configuration/logrotate.d
+rm Library/ServiceBundles/MariaDB/Contents/Prefix/bin/rcmysql
 
 mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
 cp $MY_DIR/files/mariadbctl Library/MariaDB/Prefix/bin
 cp $MY_DIR/files/mysqld-wrapper Library/MariaDB/Prefix/bin
 
-mkdir -p Library/MariaDB/Documentation
-cp Library/MariaDB/Prefix/COPYING Library/MariaDB/Documentation/LICENSE.txt
-cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/MariaDB/Documentation/$SOURCE_TARBALL_FILENAME
+mkdir -p Library/Documentation/MariaDB
+cp Library/MariaDB/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
+cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/Documentation/MariaDB/$SOURCE_TARBALL_FILENAME
 
 # If you want to sign with a different certificate, set the CODESIGN_IDENTITY
 # environment variable before running this script.
