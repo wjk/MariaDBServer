@@ -113,11 +113,11 @@ DESTDIR=$MY_DIR/build/prefix $MAKE_PROGRAM install
 echo '*** Step 3: Post-processing installation'
 
 cd $MY_DIR/build/prefix
-mkdir -p Library/MariaDB/Configuration/my.cnf.d
+mkdir -p Library/ServiceData/MariaDB/Configuration/my.cnf.d
 sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/ServiceData/MariaDB/Configuration/my.cnf.d,g' \
     Library/ServiceData/MariaDB/Configuration/my.cnf
 
-cat <<EOF > Library/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
+cat <<EOF > Library/ServiceData/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
 # This script restricts the MariaDB server to accept connections
 # from localhost only, for security purposes. You can disable this
 # behavior by deleting this file.
