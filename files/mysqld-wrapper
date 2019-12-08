@@ -9,6 +9,6 @@ touch /Library/Logs/MariaDB.log
 chown daemon:wheel /Library/Logs/MariaDB.log
 
 UID=1 # uid 1 is the daemon account
-exec /Library/MariaDB/Prefix/bin/mysqld \
-    --datadir=/Library/MariaDB/ServiceData \
+exec /Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin/mysqld \
+    --datadir=/Library/ServiceData/MariaDB/database \
 > /Library/Logs/MariaDB.log 2>&1

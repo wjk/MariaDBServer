@@ -9,7 +9,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Library/MariaDB/Prefix/bin/mysqld-wrapper</string>
+        <string>/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin/mysqld-wrapper</string>
     </array>
 
     <key>RunAtLoad</key>
