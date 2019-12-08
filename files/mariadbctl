@@ -2,16 +2,26 @@
 
 set -e
 
-if [ $UID -ne 0 ]; then
-    echo 'mariadbctl must be run as root.' 1>&2
-    exit 1
-fi
-
 if [ "$1" = "start" ]; then
+    if [ $UID -ne 0 ]; then
+        echo "mariadbctl $1 must be run as root." 1>&2
+        exit 1
+    fi
+
     launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.plist
 elif [ "$1" = "stop" ]; then
+    if [ $UID -ne 0 ]; then
+        echo "mariadbctl $1 must be run as root." 1>&2
+        exit 1
+    fi
+
     launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist
 elif [ "$1" = "restart" ]; then
+    if [ $UID -ne 0 ]; then
+        echo "mariadbctl $1 must be run as root." 1>&2
+        exit 1
+    fi
+
     launchctl unload /Library/LaunchDaemons/me.sunsol.mariadb.plist || :
     launchctl load /Library/LaunchDaemons/me.sunsol.mariadb.plist
 elif [ "$1" = "status" ]; then
