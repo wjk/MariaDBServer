@@ -126,8 +126,8 @@ bind-address = 127.0.0.1
 EOF
 
 mkdir -p etc/paths.d etc/manpaths.d
-echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
-echo '/Library/ServiceBundles/MariaDB/Contents/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
+echo '/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
+echo '/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
 
 # remove unneeded Linux-only files
 rm -r Library/ServiceData/MariaDB/Configuration/{init.d,logrotate.d}
