@@ -80,33 +80,6 @@ fi
 
 cd $MY_DIR/build
 
-echo '*** Step 2: Downloading and patching groonga'
-
-SOURCE_TARBALL_FILENAME=groonga-9.0.9.tar.gz
-
-if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
-    echo "$SOURCE_TARBALL_FILENAME already downloaded"
-else
-    echo "Downloading $SOURCE_TARBALL_FILENAME"
-    curl -L -\# -o $SOURCE_TARBALL_FILENAME https://packages.groonga.org/source/groonga/groonga-9.0.9.tar.gz
-    CLEAN=true
-fi
-
-SOURCE_SHA=$(shasum -a 256 $SOURCE_TARBALL_FILENAME)
-EXPECTED_SHA="09767f0295b3321d8b41802c5a190ac3b0118f4b9106422754b448f4d801ae2b  $SOURCE_TARBALL_FILENAME"
-if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
-    echo "Error: SHA-256 checksum does not match for $SOURCE_TARBALL_FILENAME" 1>&2
-    echo "Expected: $EXPECTED_SHA" 1>&2
-    echo "Actual:   $SOURCE_SHA" 1>&2
-    exit 1
-fi
-
-if [ "$CLEAN" = "true" -o ! -d groonga-9.0.9 ]; then
-    echo "Extracting $SOURCE_TARBALL_FILENAME"
-    rm -rf groonga-9.0.9
-    tar xf $SOURCE_TARBALL_FILENAME
-fi
-
 echo '*** Step 3: Compiling MariaDB'
 
 # The values for the -DINSTALL_* variables are relative to the prefix.
