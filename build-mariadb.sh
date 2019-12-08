@@ -117,14 +117,6 @@ mkdir -p Library/ServiceData/MariaDB/Configuration/my.cnf.d
 sed -i '' -Ee 's,/etc/my\.cnf\.d,/Library/ServiceData/MariaDB/Configuration/my.cnf.d,g' \
     Library/ServiceData/MariaDB/Configuration/my.cnf
 
-cat <<EOF > Library/ServiceData/MariaDB/Configuration/my.cnf.d/localhost-bind.cnf
-# This script restricts the MariaDB server to accept connections
-# from localhost only, for security purposes. You can disable this
-# behavior by deleting this file.
-[mysqld]
-bind-address = 127.0.0.1
-EOF
-
 mkdir -p etc/paths.d etc/manpaths.d
 echo '/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin' > etc/paths.d/me.sunsol.mariadb
 echo '/Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/share/man' > etc/manpaths.d/me.sunsol.mariadb
