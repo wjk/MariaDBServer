@@ -101,6 +101,12 @@ if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     exit 1
 fi
 
+if [ "$CLEAN" = "true" -o ! -d groonga-9.0.9 ]; then
+    echo "Extracting $SOURCE_TARBALL_FILENAME"
+    rm -rf groonga-9.0.9
+    tar xf $SOURCE_TARBALL_FILENAME
+fi
+
 echo '*** Step 3: Compiling MariaDB'
 
 # The values for the -DINSTALL_* variables are relative to the prefix.
