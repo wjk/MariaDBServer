@@ -160,6 +160,9 @@ find . -type f -and -perm 755 | xargs file | fgrep 'Mach-O 64-bit' | while read 
     fi
 done
 
+echo "Signing MariaDB.bundle"
+codesign -s "${CODESIGN_IDENTITY}" -f --timestamp Library/ServiceBundles/MariaDB.bundle
+
 echo '*** Step 4: Creating component installer'
 
 cd $MY_DIR
