@@ -136,6 +136,7 @@ mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
 cp $MY_DIR/files/mariadbctl Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin
 cp $MY_DIR/files/mysqld-wrapper Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin
+plutil -convert binary1 -o Library/ServiceBundles/MariaDB.bundle/Contents/Info.plist $MY_DIR/files/Info.plist
 
 mkdir -p Library/Documentation/MariaDB
 cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
