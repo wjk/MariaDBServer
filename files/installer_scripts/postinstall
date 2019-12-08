@@ -12,5 +12,5 @@ if [ ! -f "$3/Library/ServiceData/MariaDB/database/mysql/user.frm" ]; then
 fi
 
 if [ "$3" = "/" ]; then
-    /Library/MariaDB/Prefix/bin/mariadbctl start || true
+    /Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin/mariadbctl start || true
 fi
