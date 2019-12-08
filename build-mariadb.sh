@@ -51,7 +51,7 @@ if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
     echo "$SOURCE_TARBALL_FILENAME already downloaded"
 else
     echo "Downloading $SOURCE_TARBALL_FILENAME"
-    curl -s -L -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.org/f/mariadb-10.4.10/source/mariadb-10.4.10.tar.gz
+    curl -L -\# -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.org/f/mariadb-10.4.10/source/mariadb-10.4.10.tar.gz
     CLEAN=true
 fi
 
@@ -60,7 +60,7 @@ EXPECTED_SHA="cd50fddf86c2a47405737e342f78ebd40d5716f0fb32b976245de713bed01421  
 if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     echo "Error: SHA-256 checksum does not match for $SOURCE_TARBALL_FILENAME" 1>&2
     echo "Expected: $EXPECTED_SHA" 1>&2
-    echo "Actual: $SOURCE_SHA" 1>&2
+    echo "Actual:   $SOURCE_SHA" 1>&2
     exit 1
 fi
 
@@ -97,7 +97,7 @@ EXPECTED_SHA="09767f0295b3321d8b41802c5a190ac3b0118f4b9106422754b448f4d801ae2b  
 if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     echo "Error: SHA-256 checksum does not match for $SOURCE_TARBALL_FILENAME" 1>&2
     echo "Expected: $EXPECTED_SHA" 1>&2
-    echo "Actual: $SOURCE_SHA" 1>&2
+    echo "Actual:   $SOURCE_SHA" 1>&2
     exit 1
 fi
 
