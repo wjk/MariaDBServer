@@ -139,7 +139,7 @@ cp $MY_DIR/files/mariadbctl Library/MariaDB/Prefix/bin
 cp $MY_DIR/files/mysqld-wrapper Library/MariaDB/Prefix/bin
 
 mkdir -p Library/Documentation/MariaDB
-cp Library/MariaDB/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
+cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
 cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/Documentation/MariaDB/$SOURCE_TARBALL_FILENAME
 
 # If you want to sign with a different certificate, set the CODESIGN_IDENTITY
