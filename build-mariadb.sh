@@ -134,8 +134,8 @@ rm -r Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/support-files
 
 mkdir -p Library/LaunchDaemons
 cp $MY_DIR/files/me.sunsol.mariadb.plist Library/LaunchDaemons/me.sunsol.mariadb.plist
-cp $MY_DIR/files/mariadbctl Library/MariaDB/Prefix/bin
-cp $MY_DIR/files/mysqld-wrapper Library/MariaDB/Prefix/bin
+cp $MY_DIR/files/mariadbctl Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin
+cp $MY_DIR/files/mysqld-wrapper Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin
 
 mkdir -p Library/Documentation/MariaDB
 cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
