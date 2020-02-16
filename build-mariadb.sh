@@ -131,9 +131,12 @@ cp $MY_DIR/files/mariadbctl Library/ServiceBundles/MariaDB.bundle/Contents/Prefi
 cp $MY_DIR/files/mysqld-wrapper Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/bin
 plutil -convert binary1 -o Library/ServiceBundles/MariaDB.bundle/Contents/Info.plist $MY_DIR/files/Info.plist
 
-mkdir -p Library/Documentation/MariaDB
-cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/Documentation/MariaDB/LICENSE.txt
-cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/Documentation/MariaDB/$SOURCE_TARBALL_FILENAME
+mkdir -p Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation
+cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation/MariaDB/LICENSE.txt
+cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation/$SOURCE_TARBALL_FILENAME
+
+mkdir -p Library/OpenSourceInformation
+ln -s /Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation Library/OpenSourceInformation/me.sunsol.mariadb
 
 # If you want to sign with a different certificate, set the CODESIGN_IDENTITY
 # environment variable before running this script.
