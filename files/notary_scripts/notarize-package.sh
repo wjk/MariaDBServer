@@ -1,16 +1,15 @@
 #!/bin/sh -u
 
-if [ $# -ne 5 ]; then
-	echo usage: $0 '<TeamID> <username> <password> <bundle_id> path/to/file' 1>&2
+if [ $# -ne 1 ]; then
+	echo usage: $0 'path/to/file.pkg' 1>&2
 	exit 1
 fi
 
-ASC_PROVIDER="$1"
-ASC_USERNAME="$2"
-ASC_PASSWORD="$3"
+ASC_USERNAME="wjk011@gmail.com"
+ASC_PASSWORD="@keychain:ADC Notarization"
 
-BUNDLE_ID="$4"
-BUNDLE_PKG="$5"
+BUNDLE_ID="me.sunsol.mariadb"
+BUNDLE_PKG="$1"
 
 
 # create temporary files
@@ -25,14 +24,14 @@ trap finish EXIT
 
 
 # submit app for notarization
-if xcrun altool --notarize-app --primary-bundle-id "$BUNDLE_ID" --asc-provider "$ASC_PROVIDER" --username "$ASC_USERNAME" --password "$ASC_PASSWORD" -f "$BUNDLE_PKG" > "$NOTARIZE_APP_LOG" 2>&1; then
+if xcrun altool --notarize-app --primary-bundle-id "$BUNDLE_ID" --username "$ASC_USERNAME" --password "$ASC_PASSWORD" -f "$BUNDLE_PKG" > "$NOTARIZE_APP_LOG" 2>&1; then
 	cat "$NOTARIZE_APP_LOG"
 	RequestUUID=$(awk -F ' = ' '/RequestUUID/ {print $2}' "$NOTARIZE_APP_LOG")
 
 	# check status periodically
 	while sleep 60 && date; do
 		# check notarization status
-		if xcrun altool --notarization-info "$RequestUUID" --asc-provider "$ASC_PROVIDER" --username "$ASC_USERNAME" --password "$ASC_PASSWORD" > "$NOTARIZE_INFO_LOG" 2>&1; then
+		if xcrun altool --notarization-info "$RequestUUID" --username "$ASC_USERNAME" --password "$ASC_PASSWORD" > "$NOTARIZE_INFO_LOG" 2>&1; then
 			cat "$NOTARIZE_INFO_LOG"
 
 			# once notarization is complete, run stapler and exit
