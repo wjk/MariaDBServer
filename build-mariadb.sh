@@ -165,7 +165,7 @@ cd $MY_DIR
 
 pkgbuild \
     --ownership recommended --identifier me.sunsol.mariadb.component \
-    --version 1.0 --root build/prefix --install-location / \
+    --version 10.4.11 --root build/prefix --install-location / \
     --scripts files/installer_scripts \
     $MY_DIR/build/component.pkg
 
@@ -174,7 +174,7 @@ echo '*** Step 5: Creating product installer'
 productbuild \
     --distribution files/distribution.xml \
     --identifier me.sunsol.mariadb \
-    --version 1.0 \
+    --version 10.4.11 \
     --sign 'Developer ID Installer' --timestamp \
     --package-path build \
     --resources files \
