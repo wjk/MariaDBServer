@@ -45,18 +45,18 @@ fi
 
 echo '*** Step 1: Downloading and patching MariaDB'
 
-SOURCE_TARBALL_FILENAME=mariadb-10.4.10.tar.gz
+SOURCE_TARBALL_FILENAME=mariadb-10.4.11.tar.gz
 
 if [ -f "$SOURCE_TARBALL_FILENAME" ]; then
     echo "$SOURCE_TARBALL_FILENAME already downloaded"
 else
     echo "Downloading $SOURCE_TARBALL_FILENAME"
-    curl -L -\# -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.org/f/mariadb-10.4.10/source/mariadb-10.4.10.tar.gz
+    curl -L -\# -o $SOURCE_TARBALL_FILENAME https://downloads.mariadb.com/MariaDB/mariadb-10.4.11/source/mariadb-10.4.11.tar.gz
     CLEAN=true
 fi
 
 SOURCE_SHA=$(shasum -a 256 $SOURCE_TARBALL_FILENAME)
-EXPECTED_SHA="cd50fddf86c2a47405737e342f78ebd40d5716f0fb32b976245de713bed01421  $SOURCE_TARBALL_FILENAME"
+EXPECTED_SHA="4c076232b99433b09eb3c6d62f607192b3474d022703699b8f6aef4e79de3fb9  $SOURCE_TARBALL_FILENAME"
 if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     echo "Error: SHA-256 checksum does not match for $SOURCE_TARBALL_FILENAME" 1>&2
     echo "Expected: $EXPECTED_SHA" 1>&2
@@ -64,14 +64,14 @@ if [ "$SOURCE_SHA" != "$EXPECTED_SHA" ]; then
     exit 1
 fi
 
-if [ "$CLEAN" = "true" -o ! -d mariadb-10.4.10 ]; then
+if [ "$CLEAN" = "true" -o ! -d mariadb-10.4.11 ]; then
     echo "Extracting $SOURCE_TARBALL_FILENAME"
-    rm -rf mariadb-10.4.10
+    rm -rf mariadb-10.4.11
     tar xf $SOURCE_TARBALL_FILENAME
     PATCHES_NEEDED=true
 fi
 
-cd $MY_DIR/build/mariadb-10.4.10
+cd $MY_DIR/build/mariadb-10.4.11
 
 if [ -n "$PATCHES_NEEDED" ]; then
     patch -p1 -N -r /dev/null < $MY_DIR/patches/0001-install_db_path.patch
