@@ -132,7 +132,7 @@ cp $MY_DIR/files/mysqld-wrapper Library/ServiceBundles/MariaDB.bundle/Contents/P
 plutil -convert binary1 -o Library/ServiceBundles/MariaDB.bundle/Contents/Info.plist $MY_DIR/files/Info.plist
 
 mkdir -p Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation
-cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation/MariaDB/LICENSE.txt
+cp Library/ServiceBundles/MariaDB.bundle/Contents/Prefix/COPYING Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation/LICENSE.txt
 cp $MY_DIR/build/$SOURCE_TARBALL_FILENAME Library/ServiceBundles/MariaDB.bundle/Contents/Resources/OpenSourceInformation/$SOURCE_TARBALL_FILENAME
 
 mkdir -p Library/OpenSourceInformation
